@@ -1,0 +1,24 @@
+td {
+    position: relative;
+    min-width: 300px;
+}
+a {
+    position: relative;
+    display: inline-block;
+    height: 150px;
+}
+.link {
+    position: absolute;
+    height: 150px;
+    transition: scale 0.5s ease-in-out;
+
+    &::after {
+        content: "123";
+        display: block;
+        position: absolute;
+        right: 100%;
+    }
+    &:hover {
+        transform: scale(2) translate(12%);
+    }
+}
