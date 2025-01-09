@@ -32,3 +32,19 @@ someFilterBtn.addEventListener("click", async () => {
     myTable.rows.add(model.someFilter(someFilterValue.value));
     myTable.draw();
 });
+
+const rateFilter = document.querySelector("#rateFilter");
+const rateButton = document.querySelector("#rateButton");
+rateButton.addEventListener("click", async () => {
+    myTable.clear().draw();
+    myTable.rows.add(model.rateFilter(+rateFilter.value));
+    myTable.draw();
+});
+
+const rateAmountFilter = document.querySelector("#rateAmountFilter");
+const rateAmountButton = document.querySelector("#rateAmountButton");
+rateAmountButton.addEventListener("click", async () => {
+    myTable.clear().draw();
+    myTable.rows.add(model.rateAmountFilter(+rateAmountFilter.value));
+    myTable.draw();
+});

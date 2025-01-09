@@ -1,4 +1,4 @@
-const filesNames = [1, 2];
+const filesNames = [1,2];
 async function getSingleFileData(url) {
   const response = await fetch(`./db/html/${url}.txt`);
   const data = await response.text();
@@ -27,12 +27,10 @@ async function getSingleFileData(url) {
       rate && (rate = parseFloat(rate.split(">")[1]));
       let rateAmount = elem.find((e) => /\d{1,}&nbsp;о/g.test(e)) || 0;
       rateAmount &&
-        (rateAmount = rateAmount
-          .split(">")[1]
-          .replaceAll(/\D/g, ""));
+        (rateAmount = rateAmount.split(">")[1].replaceAll(/\D/g, ""));
 
       const productParameters = [
-        rateAmount,
+        +rateAmount,
         `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer"><img class='link' ${img} alt='${name}'></a>`,
         `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer">${name}</a>`,
         +priceExample,
@@ -88,6 +86,12 @@ class Products {
     return [...uniqueRate].map((rate) =>
       this.list.find((product) => product[0] === rate)
     );
+  }
+  rateFilter(num) {
+    return this.list.filter((e) => e[4] >= num);
+  }
+  rateAmountFilter(num) {
+    return this.list.filter((e) => e[0] >= num);
   }
 }
 const model = new Products(await getData());
