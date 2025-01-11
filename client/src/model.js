@@ -1,4 +1,5 @@
-const filesNames = [1,2];
+// const filesNames = [1];
+const filesNames = [1,2, 3, 4, 5, 6, 7, 8, 9];
 async function getSingleFileData(url) {
   const response = await fetch(`./db/html/${url}.txt`);
   const data = await response.text();
@@ -10,6 +11,8 @@ async function getSingleFileData(url) {
 
     if (elem.length > 3) {
       const href = elem[2].split(" ")[1].split("/product")[1];
+      let id = href.replace(/(\/\?.{1,})/g, "");
+      id = id.replace(/(.{1,}-)/g, "");
       const img = elem
         .find((e) => e.includes(".jpg"))
         .split(" ")
@@ -33,6 +36,7 @@ async function getSingleFileData(url) {
         +rateAmount,
         `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer"><img class='link' ${img} alt='${name}'></a>`,
         `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer">${name}</a>`,
+        id,
         +priceExample,
         parseFloat(rate),
         name,
@@ -76,7 +80,7 @@ class Products {
   someFilter(condition) {
     const words = condition.toLowerCase().split(" ");
     return this.list.filter((e) => {
-      const name = e[5].toLowerCase();
+      const name = e[6].toLowerCase();
       const isIncludesAtListOneWord = words.some((word) => name.includes(word));
       return !isIncludesAtListOneWord;
     });
@@ -88,7 +92,7 @@ class Products {
     );
   }
   rateFilter(num) {
-    return this.list.filter((e) => e[4] >= num);
+    return this.list.filter((e) => e[5] >= num);
   }
   rateAmountFilter(num) {
     return this.list.filter((e) => e[0] >= num);

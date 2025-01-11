@@ -5,6 +5,7 @@ export default async function(data) {
       { title: "Rate Amount" },
       { title: "Product" },
       { title: "Name" },
+      { title: "ID" },
       { title: "Price" },
       { title: "rate" },
     ],
