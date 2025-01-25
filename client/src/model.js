@@ -1,16 +1,16 @@
-// const filesNames = [1];
-const filesNames = [1,2, 3, 4, 5, 6, 7, 8, 9];
+const filesNames = [1, 2];
+// const filesNames = [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 async function getSingleFileData(url) {
   const response = await fetch(`./db/html/${url}.txt`);
   const data = await response.text();
-  const products = data.split("iw0");
+  const products = data.split("data-index");
   let splitedProducts = [];
   products.forEach((e) => {
     e = e.replaceAll("> <", "><");
     const elem = e.split("><");
 
     if (elem.length > 3) {
-      const href = elem[2].split(" ")[1].split("/product")[1];
+      const href = elem.find(e => e.includes("href")).split(" ")[1].split("/product")[1];
       let id = href.replace(/(\/\?.{1,})/g, "");
       id = id.replace(/(.{1,}-)/g, "");
       const img = elem
