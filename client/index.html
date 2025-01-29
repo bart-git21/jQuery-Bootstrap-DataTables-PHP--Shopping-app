@@ -21,29 +21,38 @@
     ></script>
 
     <link rel="stylesheet" href="./assets/css/style.css" />
-
   </head>
   <body>
     <h1>Get Products</h1>
     <div>
-        <button id="getProducts">All products</button>
-        <button id="uniqueProducts">Unique products</button>
+      <button id="getProducts">All products</button>
+      <button id="uniqueProducts">Unique products</button>
     </div>
     <div>
-        Exclude products by combination of words (the products has none of these words): <input type="text" id="everyExcludeValue">
-        <button id="everyEexcludeButton">Exclude</button>
+      Find products by combination of words (the products has all of these
+      words): <input type="text" id="findProductByWords" />
+      <button id="findProductByWordsButton">Find</button>
     </div>
     <div>
-        Exclude products containing some of this words (there are no products containing any of these words): <input type="text" id="someExcludeValue">
-        <button id="someEexcludeButton">Exclude</button>
+      Exclude products by combination of words (the products has none of these
+      words): <input type="text" id="everyExcludeValue" />
+      <button id="everyEexcludeButton">Exclude</button>
     </div>
     <div>
-        Product rate greater than or equal number : <input type="number" id="rateFilter">
-        <button id="rateButton">Filter by rate</button>
+      Exclude products containing some of this words (there are no products
+      containing any of these words):
+      <input type="text" id="someExcludeValue" />
+      <button id="someEexcludeButton">Exclude</button>
     </div>
     <div>
-        Product rate amount greater than or equal number : <input type="number" id="rateAmountFilter">
-        <button id="rateAmountButton">Filter by rate amount</button>
+      Product rate greater than or equal number :
+      <input type="number" id="rateFilter" />
+      <button id="rateButton">Filter by rate</button>
+    </div>
+    <div>
+      Product rate amount greater than or equal number :
+      <input type="number" id="rateAmountFilter" />
+      <button id="rateAmountButton">Filter by rate amount</button>
     </div>
     <table id="myTable" class="display"></table>
   </body>
