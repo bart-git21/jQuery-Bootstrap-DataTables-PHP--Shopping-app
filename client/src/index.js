@@ -17,6 +17,14 @@ uniqueProducts.addEventListener("click", async () => {
     myTable.draw();
 })
 
+const findProductByWordsButton = document.querySelector("#findProductByWordsButton");
+const findProductByWords = document.querySelector("#findProductByWords");
+findProductByWordsButton.addEventListener("click", async () => {
+    myTable.clear().draw();
+    myTable.rows.add(model.findProductByWords(findProductByWords.value));
+    myTable.draw();
+});
+
 const everyFilterBtn = document.querySelector("#everyEexcludeButton");
 const everyFilterValue = document.querySelector("#everyExcludeValue");
 everyFilterBtn.addEventListener("click", async () => {
