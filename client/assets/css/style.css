@@ -1,14 +1,21 @@
+.navbar-brand {
+    max-height: 100px;
+
+    img {
+        height: 100%;
+        max-width: 70px;
+    }
+}
+
 td {
     position: relative;
-    min-width: 300px;
 }
 a {
     position: relative;
     display: inline-block;
-    height: 150px;
 }
 .link {
-    position: absolute;
+    position: relative;
     height: 150px;
     transition: scale 0.5s ease-in-out;
 
@@ -20,5 +27,6 @@ a {
     }
     &:hover {
         transform: scale(2) translate(12%);
+        z-index: 2;
     }
 }
