@@ -1,5 +1,4 @@
 const filesNames = [1, 2];
-// const filesNames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 async function getHtml(fileName) {
   const response = await fetch(`./../server/db/html/${fileName}.txt`);
   return await response.text();
@@ -58,6 +57,7 @@ async function getSingleFileData(fileName) {
 
       const prodParam = {
         id,
+        imgSrc: img,
         feedbacks: +rateAmount,
         href,
         name,
@@ -119,7 +119,7 @@ class Products {
     const filteredList = this.list.filter((e) =>
       words.every((word) => e.name.toLowerCase().includes(word))
     );
-    this.tableData  = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
   everyFilter(condition) {
@@ -129,7 +129,7 @@ class Products {
       const isAllIncludes = words.every((word) => name.includes(word));
       return !isAllIncludes;
     });
-    this.tableData = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
   someFilter(condition) {
@@ -139,7 +139,7 @@ class Products {
       const isIncludesAtListOneWord = words.some((word) => name.includes(word));
       return !isIncludesAtListOneWord;
     });
-    this.tableData = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
   unique() {
@@ -147,17 +147,17 @@ class Products {
     const filteredList = [...uniqueRate].map((rate) =>
       this.list.find((product) => product.feedbacks === rate)
     );
-    this.tableData = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
   rateFilter(num) {
     const filteredList = this.list.filter((e) => e.rate >= num);
-    this.tableData = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
   rateAmountFilter(num) {
     const filteredList = this.list.filter((e) => e.feedbacks >= num);
-    this.tableData = filteredList.map(e => e.tableData);
+    this.tableData = filteredList.map((e) => e.tableData);
     return this.tableData;
   }
 }
