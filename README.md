@@ -12,8 +12,8 @@ npm run dev
 The web-based single page application for product data manipulation.
 
 # Technologies Used
-Frontend: JavaScript, CSS, Bootstrap.
-Backend: no.
+Frontend: JavaScript, jQuery, CSS, Bootstrap.
+Backend: PHP.
 Database: no.
 Authentication: no.
 Data format: JSON.
@@ -49,4 +49,6 @@ $ npm install
 ```
 
 ## Dependencies:
+- jQuery library for DOM manipulation.
 - DataTables library for creating tables and adding interactive features to them.
+- Chart.js library for creating charts and graphs.
