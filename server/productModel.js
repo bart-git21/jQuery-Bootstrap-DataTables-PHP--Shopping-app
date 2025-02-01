@@ -1,7 +1,7 @@
 const filesNames = [1, 2];
 // const filesNames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 async function getHtml(fileName) {
-  const response = await fetch(`db/html/${fileName}.txt`);
+  const response = await fetch(`./../server/db/html/${fileName}.txt`);
   return await response.text();
 }
 async function getSingleFileData(fileName) {
