@@ -25,7 +25,7 @@ define("ROOT_PATH", "http:/" .getRootPath());
                         href="<?php echo ROOT_PATH . 'client/index.php'; ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo ROOT_PATH . 'client/pages/price.php'; ?>">Price trend</a>
+                    <a class="nav-link" id="priceNavBtn" href="<?php echo ROOT_PATH . 'client/pages/price.php'; ?>">Price trend</a>
                 </li>
             </ul>
         </div>
