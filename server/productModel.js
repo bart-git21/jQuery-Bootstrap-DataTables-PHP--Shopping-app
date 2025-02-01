@@ -13,10 +13,11 @@ async function getSingleFileData(fileName) {
     const elem = e.split("><");
 
     if (elem.length > 3) {
-      const href = elem
+      let href = elem
         .find((e) => e.includes("href"))
         .split(" ")[1]
         .split("/product")[1];
+        href = `https://www.example.com/product${href}`;
       let id = href.replace(/(\/\?.{1,})/g, "");
       id = id.replace(/(.{1,}-)/g, "");
       const img = elem
@@ -65,8 +66,8 @@ async function getSingleFileData(fileName) {
         rate: parseFloat(rate),
         tableData: [
           +rateAmount,
-          `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer"><img class='link' ${img} alt='${name}'></a>`,
-          `<a href='https://www.example.com/product${href}' target="_blank" rel="noopener noreferrer">${name}</a>`,
+          `<a href='${href}' target="_blank" rel="noopener noreferrer"><img class='link' ${img} alt='${name}'></a>`,
+          `<a href='${href}' target="_blank" rel="noopener noreferrer">${name}</a>`,
           id,
           +priceExample,
           `
