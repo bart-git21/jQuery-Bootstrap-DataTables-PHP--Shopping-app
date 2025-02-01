@@ -2,9 +2,9 @@
 // require "../../config.php";
 function getRootPath():string
 {
-    $configFilePath = parse_url(__FILE__)["path"];
-    $rootDirPos = strrpos($configFilePath, "client");
-    $directoryPath = substr_replace($configFilePath, "", $rootDirPos, strlen($configFilePath));
+    $filePath = parse_url(__FILE__)["path"];
+    $rootDirPos = strrpos($filePath, "client");
+    $directoryPath = substr_replace($filePath, "", $rootDirPos, strlen($filePath));
     return str_replace("\\", "/", $directoryPath);
 }
 $path = getRootPath(); 
