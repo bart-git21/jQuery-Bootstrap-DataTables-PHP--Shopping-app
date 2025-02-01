@@ -7,6 +7,7 @@ export default async function(data) {
       { title: "Name" },
       { title: "ID" },
       { title: "Price" },
+      { title: "Price per kg or etc." },
       { title: "rate" },
     ],
     paging: true, // Enable pagination
