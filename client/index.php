@@ -79,7 +79,8 @@
             })
 
             $("#priceNavBtn").on("click", function () {
-                const data = model.list.map(e => ({ "id": e.id, "price": e.price }));
+                const date = new Date();
+                const data = model.list.map(e => ({ "id": e.id, name: e.name, href: e.href, "price": `${e.price} - ${date.toLocaleDateString()}` }));
                 $.ajax({
                     url: "../server/price.php",
                     method: "POST",
