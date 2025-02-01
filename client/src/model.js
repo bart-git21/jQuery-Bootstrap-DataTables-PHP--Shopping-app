@@ -114,6 +114,14 @@ class Products {
     if (!this.list.length) await this.create();
     return this.tableData;
   }
+  findProductByWords(inputValue) {
+    const words = inputValue.toLowerCase().split(" ");
+    const filteredList = this.list.filter((e) =>
+      words.every((word) => e.name.toLowerCase().includes(word))
+    );
+    this.tableData  = filteredList.map(e => e.tableData);
+    return this.tableData;
+  }
   everyFilter(condition) {
     const words = condition.toLowerCase().split(" ");
     const filteredList = this.list.filter((e) => {
