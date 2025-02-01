@@ -1,4 +1,4 @@
-import model from "./model.js";
+import model from "./../../server/productModel.js";
 import table from "./datatables.js";
 
 const myTable = await table(await model.read());
