@@ -111,7 +111,7 @@ class Products {
     this.tableData = this.list.map((e) => e.tableData);
   }
   async read() {
-    if (!this.list.length) await this.create();
+    await this.create();
     return this.tableData;
   }
   findProductByWords(inputValue) {
