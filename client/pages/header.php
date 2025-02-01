@@ -4,7 +4,7 @@ function getRootPath():string
 {
     $filePath = parse_url(__FILE__)["path"];
     $rootDirPos = strrpos($filePath, "client");
-    $directoryPath = substr_replace($filePath, "", $rootDirPos, strlen($filePath));
+    $directoryPath = substr($filePath, 0, $rootDirPos);
     return str_replace("\\", "/", $directoryPath);
 }
 $path = getRootPath(); 
