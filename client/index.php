@@ -80,17 +80,17 @@
 
             $("#priceNavBtn").on("click", function () {
                 const date = new Date();
-                const data = model.list.map(e => ({ "id": e.id, name: e.name, href: e.href, "price": `${e.price} - ${date.toLocaleDateString()}` }));
+                const todayProducts = model.list.map(e => ({ "id": e.id, name: e.name, href: e.href, "price": `${e.price} - ${date.toLocaleDateString()}` }));
                 $.ajax({
-                    url: "../server/price.php",
+                    url: "./../server/price.php",
                     method: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify(data),
+                    data: JSON.stringify(todayProducts),
                 })
                     .done(response => {
                         console.log(response);
-                    }),
-                    fail((xhr, status, error) => { console.log(error) })
+                    })
+                    .fail((xhr, status, error) => { console.error(status, error) })
             })
 
             $("#uniqueProducts").on("click", async () => {
