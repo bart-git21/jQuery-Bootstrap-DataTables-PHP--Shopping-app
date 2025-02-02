@@ -20,7 +20,7 @@ Data format: JSON.
 Deployment: GitHub.
 
 # Base URL
-http://localhost/index.html
+http://localhost/index.php
 
 ## Features
 
