@@ -14,8 +14,10 @@ foreach ($todayPrice as $key => $newProduct) {
 
     // update product price in the history list
     if ($index) {
-        array_push($aa, $priceHistory[$index]->price);
-        array_push($priceHistory[$index]->price, $newProduct->price);
+        // if the price is different, add it to the price history
+        if (intval(end($priceHistory[$index]->price)) !== intval($newProduct->price)) {
+            array_push($priceHistory[$index]->price, $newProduct->price);
+        }
     } else {
         $newProduct->price = [$newProduct->price];
         array_push($priceHistory, $newProduct);
