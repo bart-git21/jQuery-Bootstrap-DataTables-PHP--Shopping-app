@@ -22,3 +22,7 @@ foreach ($todayPrice as $key => $newProduct) {
     }
     ;
 }
+file_put_contents("db/price.json", json_encode($priceHistory, JSON_UNESCAPED_UNICODE));
+
+// Return the updated price data
+echo json_encode(["status" => "success"]);
