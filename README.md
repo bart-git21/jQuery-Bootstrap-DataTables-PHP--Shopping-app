@@ -1,15 +1,7 @@
-# Filtering and sorting products data
-
-## Development Server
-Start the development server on `http://localhost`:
-
-```bash
-# npm
-npm run dev
-```
+# the Price history application
 
 # Project Overview:
-The web-based single page application for product data manipulation.
+The web-based single page application for product data manipulation and visualization the price changes.
 
 # Technologies Used
 Frontend: JavaScript, jQuery, CSS, Bootstrap.
@@ -26,6 +18,7 @@ http://localhost/index.php
 
 ### Filtering
 Filter products by unique name, by product price.
+Filter products that has combination of the words you want.
 Filter products that does not contains any of the words you want.
 Filter products that has not combination of the words you want.
 You can get all initial products without loss after any manipulation.
