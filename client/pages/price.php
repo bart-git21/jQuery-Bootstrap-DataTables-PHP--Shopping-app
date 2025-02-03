@@ -13,6 +13,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" referrerpolicy="no-referrer"></script>
+
     <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
@@ -22,6 +30,58 @@
     </header>
 
     <h1>Price trend</h1>
+
+    <div style="width: 500px;">
+        <span></span>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script type="module">
+        let discount = [];
+        $(document).ready(function () {
+            $.ajax({
+                url: "./../../server/db/discount.json",
+                method: "GET",
+                contentType: "application/json",
+            })
+                .done(response => {
+                    discount = response;
+                    const ctx = document.querySelector('#myChart');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: discount[0].price.map(p => p.split(" - ")[1]),
+                            datasets: [{
+                                // label: `${discount[0].id} - ${discount[0].name}`,
+                                data: discount[0].price.map(p => p.split(" ")[0]),
+                                fill: false,
+                                borderColor: 'rgb(75, 192, 192)',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                    // labels: {
+                                    //     color: 'rgb(255, 99, 132)',
+                                    //     textAlign: "left",
+                                    //     boxWidth: 1,
+                                    // },
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    min: 600,
+                                    max: 800
+                                }
+                            }
+                        }
+                    });
+                })
+                .fail((xhr, status, error) => { console.log(error) })
+        })
+    </script>
 </body>
 
 </html>
