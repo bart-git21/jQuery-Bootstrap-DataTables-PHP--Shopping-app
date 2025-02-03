@@ -1,0 +1,20 @@
+[
+    {
+      "id": "123",
+      "name": "awesome product",
+      "href": "https://www.example.com",
+      "price": "456 - 01.01.2025"
+    },
+    {
+      "id": "456",
+      "name": "perfect product",
+      "href": "https://www.example.com",
+      "price": "564 - 01.01.2025"
+    },
+    {
+      "id": "127893",
+      "name": "brilliant product",
+      "href": "https://www.example.com",
+      "price": "745 - 02.01.2025"
+    }
+  ]
