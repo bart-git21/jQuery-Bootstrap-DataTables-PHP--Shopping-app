@@ -30,14 +30,48 @@
     </header>
 
     <h1>Price trend</h1>
-
-    <div style="width: 500px;">
-        <span></span>
-        <canvas id="myChart"></canvas>
-    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr);" id="output"></div>
 
     <script type="module">
+        function displayProductChart(product) {
+            const productView = `
+                <a href="${product.href}">${product.id} - ${product.name}</a>
+                <canvas id="myChart"></canvas>
+            `
+            const productPriceList = product.price.map(p => p.split(" - ")[0]);
+            const div = document.createElement("div");
+            div.setAttribute("style", "width: 500px;");
+            div.insertAdjacentHTML("beforeend", productView);
+            output.insertAdjacentElement("beforeend", div);
+            const ctx = div.querySelector('#myChart');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: product.price.map(p => p.split(" - ")[1]),
+                    datasets: [{
+                        data: productPriceList,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: productPriceList.at(-1) * 0.8,
+                            max: productPriceList.at(-1) * 1.2
+                        }
+                    }
+                }
+            });
+        }
         let discount = [];
+        const output = document.getElementById('output');
         $(document).ready(function () {
             $.ajax({
                 url: "./../../server/db/discount.json",
@@ -46,38 +80,7 @@
             })
                 .done(response => {
                     discount = response;
-                    const ctx = document.querySelector('#myChart');
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: discount[0].price.map(p => p.split(" - ")[1]),
-                            datasets: [{
-                                // label: `${discount[0].id} - ${discount[0].name}`,
-                                data: discount[0].price.map(p => p.split(" ")[0]),
-                                fill: false,
-                                borderColor: 'rgb(75, 192, 192)',
-                                tension: 0.1
-                            }]
-                        },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    display: false,
-                                    // labels: {
-                                    //     color: 'rgb(255, 99, 132)',
-                                    //     textAlign: "left",
-                                    //     boxWidth: 1,
-                                    // },
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    min: 600,
-                                    max: 800
-                                }
-                            }
-                        }
-                    });
+                    discount.forEach(e => displayProductChart(e))
                 })
                 .fail((xhr, status, error) => { console.log(error) })
         })
