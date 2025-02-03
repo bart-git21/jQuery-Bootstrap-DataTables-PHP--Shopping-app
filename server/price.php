@@ -17,9 +17,13 @@ foreach ($todayPrice as $key => $newProduct) {
     if ($index) {
         // if the price is different, add it to the price history
         if (intval(end($priceHistory[$index]->price)) !== intval($newProduct->price)) {
-            (intval(end($priceHistory[$index]->price)) > intval($newProduct->price)) && array_push($discountList, $priceHistory[$index]);
-            file_put_contents("db/discount.json", json_encode($discountList, JSON_UNESCAPED_UNICODE));
+            $lastPrice = intval(end($priceHistory[$index]->price));
             array_push($priceHistory[$index]->price, $newProduct->price);
+            if (intval($newProduct->price) < ($lastPrice * 0.95)) {
+                array_push($discountList, $priceHistory[$index]);
+            }
+            ;
+            file_put_contents("db/discount.json", json_encode($discountList, JSON_UNESCAPED_UNICODE));
         }
     } else {
         $newProduct->price = [$newProduct->price];
