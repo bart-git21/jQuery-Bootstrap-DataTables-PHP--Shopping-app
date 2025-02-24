@@ -17,7 +17,8 @@ async function getSingleFileData(fileName) {
         .find((e) => e.includes("href"))
         .split(" ")[1]
         .split("/product")[1];
-        href = `https://www.example.com/product${href}`;
+      href = href.replace(/(\/")/g, "");
+      href = `https://www.example.com/product${href}`;
       let id = href.replace(/(\/\?.{1,})/g, "");
       id = id.replace(/(.{1,}-)/g, "");
       const img = elem
@@ -33,7 +34,7 @@ async function getSingleFileData(fileName) {
         .find((e) => e.includes("tsBody500Medium"))
         .split('">')[1]
         .replace("</span", "");
-      let rate = elem.find((e) => e.search(/>\d{1}\.\d{1}  /g) != -1) || 0;
+      let rate = elem.find((e) => e.search(/>\d{1}\.\d{1}/g) != -1) || 0;
       rate && (rate = parseFloat(rate.split(">")[1]));
       let rateAmount = elem.find((e) => /\d{1,}&nbsp;о/g.test(e)) || 0;
       rateAmount &&
